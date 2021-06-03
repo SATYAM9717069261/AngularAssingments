@@ -1,0 +1,35 @@
+<div class="container main">
+    <!-- header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <span class="navbar-brand" href="">Text Editor <small>(use ngx-editor)</small> </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link active float-end" aria-current="page"
+                            href="https://github.com/SATYAM9717069261">Git</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="btn-group float-end" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary" printSectionId="Print" ngxPrint>Print</button>
+                          </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- end header-->
+    <!-- body start-->
+    <div class="container body">
+        <div class="NgxEditor__Wrapper">
+            <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+
+            <ngx-editor id="Print" [editor]="editor" style="height: 120px;" [placeholder]="'Type here...'"></ngx-editor>
+        </div>
+    </div>
+    <!-- End Body Start-->
+</div>
