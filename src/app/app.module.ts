@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { WordComponent } from './word/word.component';
 import { NgxEditorModule } from 'ngx-editor';
 import {NgxPrintModule} from 'ngx-print';
+
 @NgModule({
   declarations: [
     AppComponent,

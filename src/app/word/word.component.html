@@ -16,7 +16,13 @@
                     <li class="nav-item">
                         <div class="btn-group float-end" role="group" aria-label="Basic example">
                             <button type="button" class="btn btn-primary" printSectionId="Print" ngxPrint>Print</button>
-                          </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="btn-group float-end" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary" (click)="dialog()">Save</button>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -25,11 +31,46 @@
     <!-- end header-->
     <!-- body start-->
     <div class="container body">
-        <div class="NgxEditor__Wrapper">
-            <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-
-            <ngx-editor id="Print" [editor]="editor" style="height: 120px;" [placeholder]="'Type here...'"></ngx-editor>
+        <div class="row">
+            <div class="col-10 NgxEditor__Wrapper">
+                <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                <ngx-editor id="Print" [editor]="editor" style="height: 120px;" [placeholder]="'Type here...'">
+                </ngx-editor>
+            </div>
+            <div class="col-2" style="background-color: #e2e1e6b0;text-align: center;">
+                <label>Saved Data</label>
+                <hr>
+                <div class="list-group">
+                    <div *ngFor="let item of datacontent.keys()">
+                        <span class="list-group-item list-group-item-action" (click)="insertdata(item)">{{item}}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- End Body Start-->
 </div>
+
+<!-- pop up start-->
+<!-- inside model disable property set-->
+<div class="modal" tabindex="-1" role="dialog" [style.display]="active">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Save Your Data as </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dialog()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input class="form-control form-control-lg" #datafilename type="text" placeholder="Type Here....">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="save(datafilename.value)">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="dialog()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pop up End-->
