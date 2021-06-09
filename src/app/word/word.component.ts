@@ -1,64 +1,82 @@
-import { Component, OnDestroy, OnInit,ChangeDetectionStrategy } from '@angular/core';
-import { Editor, schema, toDoc, toHTML} from 'ngx-editor';
-import jsonDoc from "../doc";
+import { Component, OnDestroy, OnInit,ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import {  Validators, Editor, Toolbar,toDoc,toHTML } from 'ngx-editor';
+import jsonDoc from  '../doc';
+import {saveAs} from 'file-saver';
 @Component({
   selector: 'app-word',
   templateUrl: './word.component.html',
   styleUrls: ['./word.component.css'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class WordComponent implements OnInit, OnDestroy {
-  datacontent = new Map<string, any>();
-  textdata:any;
-  active: string = 'none';
-  constructor() { }
+  editordoc = jsonDoc;
+  htmldata:any;
+  jsonDoc:any;
   editor: any;
-  ngOnInit(): void { this.editor = new Editor(); }
+  filename:any;
+  toolbar: Toolbar = [
+    ["bold", "italic"],
+    ["underline", "strike"],
+    ["code", "blockquote"],
+    ["ordered_list", "bullet_list"],
+    [{ heading: ["h1", "h2", "h3", "h4", "h5", "h6"] }],
+    ["link", "image"],
+    ["text_color", "background_color"],
+    ["align_left", "align_center", "align_right", "align_justify"]
+  ];
 
-  save(data:string) {
-    /**
-     *const json= toHTML(jsonDoc,schema);// Json to html
-     *const json = toDOC();
-     */
-   const json= toDoc(this.editor,schema);
-   console.log('html data => ', json);
-   this.datacontent.set(data,{json});
-   console.log('Sucessfull=>',this.datacontent.keys());
+  form = new FormGroup({
+    editorContent: new FormControl(
+      { value: jsonDoc, disabled: false },
+      Validators.required()
+    ),
+    filename:new FormControl()
+  });
+
+  //get doc(): AbstractControl {
+   // return this.form.get("editorContent");
+ // }
+
+  
+  constructor() { }
+  ngOnInit(): void { this.editor = new Editor(); this.filename=[] }
+
+  save() {
+   /** this.htmldata = toHTML(this.form.value.editorContent);
+    this.jsonDoc = toDoc(this.htmldata);// save this variable in file with file name
+    console.log("File Name => ", this.form.value ,"Form Data +> ", this.jsonDoc);
+*/
+   /** 
+    * Use if you want to store data in file
+    * const blob = new Blob([JSON.stringify(jsonDoc)], {type : 'application/json'});
+    * saveAs(blob, this.form.value.filename+'.json');
+    */
+    
+   //this.htmldata = toHTML(this.form.value.editorContent);
+   //this.jsonDoc = toDoc(this.htmldata);// save this variable in file with file name
+   localStorage.setItem(this.form.value.filename,JSON.stringify(this.form.value.editorContent));
+   this.filename.push(this.form.value.filename);
+   this.form.setValue({
+    editorContent:'',
+    filename:''
+  });
+   console.log("File 2Name => ", this.jsonDoc ); 
   }
-  insertdata(key:any){
-/**     this.editor.commands
-    .textColor('red')
-    .insertText('Hello world!')
-    .focus()
-    .scrollIntoView()
-    .exec();
-  */
-   //this.editor.commands.this.datacontent.get(key).exec();
-   //console.log("Stored Data at => ",this.datacontent.get(key));
-//   this.editor.commands.this.datacontent.get(key).exec();
-   //this.editor=this.datacontent.get(key);
-   //this.editor.commands.insertText('helo 12').exec();
-   this.editor.destroy();
-   this.editor=new Editor();
-   this.editor.commands
-    .textColor('')
-    .insertText('Hello World')
-    .focus()
-    .scrollIntoView()
-    .exec();
-   console.log("data for show=>",this.datacontent.get(key));
+  insertdata(data:string){
+   //this.editor=new Editor();
+   this.form.reset();
+   var datavalue=JSON.parse( localStorage.getItem(data)+'');
+   console.log('Dat avalue => ',toHTML(datavalue));
+   this.form.setValue({
+    editorContent:toHTML(datavalue),
+    filename:data
+  });
+   console.log("data for show=>",this.form.value.editorContent);
   }
 
-  dialog() {
-    if(this.active=='none') this.active='block';
-    else this.active='none';
-  }
-  adddata(name: string, data: any) {
-    this.datacontent.set(name, data);
-  }
-  extractdata(name: string) {
-    return this.datacontent.get(name);
-  }
+  
   ngOnDestroy(): void {
     this.editor.destroy();
   }

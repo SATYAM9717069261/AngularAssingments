@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { WordComponent } from './word/word.component';
 import { NgxEditorModule } from 'ngx-editor';
 import {NgxPrintModule} from 'ngx-print';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import {NgxPrintModule} from 'ngx-print';
     BrowserModule,
     AppRoutingModule,
     NgxEditorModule,
-    NgxPrintModule
+    NgxPrintModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
