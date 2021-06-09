@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit,ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import {  Validators, Editor, Toolbar,toDoc,toHTML } from 'ngx-editor';
-import jsonDoc from  '../doc';
+
 import {saveAs} from 'file-saver';
 @Component({
   selector: 'app-word',
@@ -11,7 +11,6 @@ import {saveAs} from 'file-saver';
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class WordComponent implements OnInit, OnDestroy {
-  editordoc = jsonDoc;
   htmldata:any;
   jsonDoc:any;
   editor: any;
@@ -29,7 +28,7 @@ export class WordComponent implements OnInit, OnDestroy {
 
   form = new FormGroup({
     editorContent: new FormControl(
-      { value: jsonDoc, disabled: false },
+      { value: '', disabled: false },
       Validators.required()
     ),
     filename:new FormControl()
@@ -44,10 +43,10 @@ export class WordComponent implements OnInit, OnDestroy {
   ngOnInit(): void { this.editor = new Editor(); this.filename=[] }
 
   save() {
-   /** this.htmldata = toHTML(this.form.value.editorContent);
-    this.jsonDoc = toDoc(this.htmldata);// save this variable in file with file name
+    //this.htmldata = toHTML(this.form.value.editorContent);
+    this.jsonDoc = toDoc(this.form.value.editorContent);// save this variable in file with file name
     console.log("File Name => ", this.form.value ,"Form Data +> ", this.jsonDoc);
-*/
+
    /** 
     * Use if you want to store data in file
     * const blob = new Blob([JSON.stringify(jsonDoc)], {type : 'application/json'});
@@ -56,7 +55,7 @@ export class WordComponent implements OnInit, OnDestroy {
     
    //this.htmldata = toHTML(this.form.value.editorContent);
    //this.jsonDoc = toDoc(this.htmldata);// save this variable in file with file name
-   localStorage.setItem(this.form.value.filename,JSON.stringify(this.form.value.editorContent));
+   localStorage.setItem(this.form.value.filename,JSON.stringify( this.jsonDoc));
    this.filename.push(this.form.value.filename);
    this.form.setValue({
     editorContent:'',
