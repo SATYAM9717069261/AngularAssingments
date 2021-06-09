@@ -1,3 +1,7 @@
+<video width="320" height="240" controls>
+  <source src="https://github.com/SATYAM9717069261/AngularAssingments/blob/master/Recording1-2021-06-09_03.10.01.mp4" type="video/mp4">
+</video>
+
 <img src="https://github.com/SATYAM9717069261/AngularAssingments/blob/master/Screenshot%20from%202021-06-04%2001-25-54.png">
 
 # Demoapp
