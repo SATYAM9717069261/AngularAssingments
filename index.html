@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Basic Form</title>
+	<link rel="stylesheet" href="./css/root.css">
+	<link rel="stylesheet" href="./css/main.css">
+	<script src="./js/main.js"></script>
+</head>
+
+<body>
+	<div id="loading" class="container abs center opacity-9 bg-color-gray hide">
+		<h1 class="h40 select-disable">Loading...</h1>
+	</div>
+	<div class="container bg-color-gray flex center">
+		<div class="bg-color-gray5 padding-1 defult-brd default-rad">
+			<p class="h20 select-disable">Information Form</p>
+			<div class="margin-1 input flex flex-right default-brd bg-white default-padding">			
+				<input class="large icon left default hover pressed" type="text" name="f_name" id=""
+					placeholder="First Name" />
+				<img class="margin-auto" src="./Icon / Outlined / User.png" alt="">	
+			</div>
+			<div class="margin-1 input flex flex-right default-brd bg-white default-padding">
+				<input class="large icon left default hover pressed" type="text" name="l_name" id=""
+					placeholder="Last Name" />
+					<img class="margin-auto" src="./Icon / Outlined / User.png" alt="">
+			</div>
+			<div class="margin-1 input flex flex-right default-brd bg-white default-padding">
+				<input class="large icon left default hover pressed" type="email" name="email" id=""
+					placeholder="Email" />
+					<img class="margin-auto" src="./Icon / Outlined / User.png" alt="">
+			</div>
+			<div class="margin-1 input flex flex-right default-brd bg-white default-padding">
+				<input class="large icon left default hover pressed" type="password" name="pas" id=""
+					placeholder="Password" />
+					<img class="margin-auto" src="./Icon / Outlined / User.png" alt="">
+			</div>
+			<div class="margin-1 button hover pressed">
+				<button class="p16 right primary default default col-light" onclick="loading()" type="submit">Submit</button>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
