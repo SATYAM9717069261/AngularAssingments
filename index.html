@@ -11,34 +11,35 @@
 </head>
 
 <body>
-	<div id="loading" class="container abs center opacity-9 bg-color-gray hide">
-		<h1 class="h40 select-disable">Loading...</h1>
-	</div>
-	<div class="container bg-color-gray flex center">
-		<div class="bg-color-gray5 padding-1 defult-brd default-rad">
-			<p class="h20 select-disable">Information Form</p>
-			<div class="margin-1 input flex flex-right default-brd bg-white default-padding">			
-				<input class="large icon left default hover pressed" type="text" name="f_name" id=""
-					placeholder="First Name" />
-				<img class="margin-auto" src="./Icon / Outlined / User.png" alt="">	
-			</div>
-			<div class="margin-1 input flex flex-right default-brd bg-white default-padding">
-				<input class="large icon left default hover pressed" type="text" name="l_name" id=""
-					placeholder="Last Name" />
-					<img class="margin-auto" src="./Icon / Outlined / User.png" alt="">
-			</div>
-			<div class="margin-1 input flex flex-right default-brd bg-white default-padding">
-				<input class="large icon left default hover pressed" type="email" name="email" id=""
-					placeholder="Email" />
-					<img class="margin-auto" src="./Icon / Outlined / User.png" alt="">
-			</div>
-			<div class="margin-1 input flex flex-right default-brd bg-white default-padding">
-				<input class="large icon left default hover pressed" type="password" name="pas" id=""
-					placeholder="Password" />
-					<img class="margin-auto" src="./Icon / Outlined / User.png" alt="">
-			</div>
-			<div class="margin-1 button hover pressed">
-				<button class="p16 right primary default default col-light" onclick="loading()" type="submit">Submit</button>
+	<div class="container flex center">
+		<!--sideimage-->
+		<div class="container widget50 border1 shadow-primary flex col center">
+			<img class="widget5 profile-border pic-img" src="./Icon /profile.png" alt="">
+			<div class="container widget25 border1">
+				<h1 class="txt-center h24">User Registraction</h1>
+				<div class="container flex col">
+					<div class="flex large">
+						<i class="usr icon"></i>
+						<input class="input-field " type="text" placeholder="First Name">
+					</div>
+					<div class="flex large">
+						<i class="usr icon"></i>
+						<input class="input-field " type="text" placeholder="Last Name">
+					</div>
+					<div class="flex large">
+						<i class="mail icon"></i>
+						<input class="input-field " type="email" placeholder="Email">
+					</div>
+					<div class="flex large">
+						<i class="pas icon"></i>
+						<input class="input-field " type="password" placeholder="Password">
+					</div>
+
+					<div class="flex large">
+						<i id="loader"></i> <!-- load icon-->					
+						<button id="submit" class="submit" type="submit" onclick="loading()">Submit</button> <!--input-field-->
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
