@@ -297,3 +297,9 @@ i {
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+@media screen and (max-width: 650px) {
+	.widget50 {width: 15em;}
+	.border1{border: none;}
+	 
+}
