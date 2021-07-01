@@ -14,6 +14,6 @@ function loading() {
 			loader.add('submit-disable');
 			document.getElementById('loader').disabled = true;
 
-		}, 4000);
+		}, 2000);
 	}
 }
